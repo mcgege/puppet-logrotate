@@ -2,6 +2,8 @@
 #
 class logrotate::defaults{
 
+  $defaultrule_bwtmp = $::logrotate::defaultrule_bwtmp
+
   case $::osfamily {
     'Debian': {
 
@@ -24,13 +26,13 @@ class logrotate::defaults{
         rotate       => '1',
       }
 
-      if !defined( Logrotate::Rule['wtmp'] ) {
+      if $defaultrule_bwtmp and !defined( Logrotate::Rule['wtmp'] ) {
         logrotate::rule { 'wtmp':
             path        => '/var/log/wtmp',
             create_mode => '0664',
         }
       }
-      if !defined( Logrotate::Rule['btmp'] ) {
+      if $defaultrule_bwtmp and !defined( Logrotate::Rule['btmp'] ) {
         logrotate::rule { 'btmp':
           path        => '/var/log/btmp',
           create_mode => '0600',
@@ -57,7 +59,7 @@ class logrotate::defaults{
         rotate       => '5',
       }
 
-      if !defined( Logrotate::Rule['wtmp'] ) {
+      if $defaultrule_bwtmp and !defined( Logrotate::Rule['wtmp'] ) {
         logrotate::rule { 'wtmp':
             path        => '/var/log/wtmp',
             missingok   => false,
@@ -86,7 +88,7 @@ class logrotate::defaults{
         rotate       => '1',
       }
 
-      if !defined( Logrotate::Rule['wtmp'] ) {
+      if $defaultrule_bwtmp and !defined( Logrotate::Rule['wtmp'] ) {
         logrotate::rule { 'wtmp':
             path        => '/var/log/wtmp',
             missingok   => false,
@@ -94,7 +96,7 @@ class logrotate::defaults{
             minsize     => '1M',
         }
       }
-      if !defined( Logrotate::Rule['btmp'] ) {
+      if $defaultrule_bwtmp and !defined( Logrotate::Rule['btmp'] ) {
         logrotate::rule { 'btmp':
             path        => '/var/log/btmp',
             create_mode => '0600',
@@ -115,7 +117,7 @@ class logrotate::defaults{
         rotate       => '1',
       }
 
-      if !defined( Logrotate::Rule['wtmp'] ) {
+      if $defaultrule_bwtmp and !defined( Logrotate::Rule['wtmp'] ) {
         logrotate::rule { 'wtmp':
             path        => '/var/log/wtmp',
             create_mode => '0664',
@@ -123,7 +125,7 @@ class logrotate::defaults{
             minsize     => '1M',
         }
       }
-      if !defined( Logrotate::Rule['btmp'] ) {
+      if $defaultrule_bwtmp and !defined( Logrotate::Rule['btmp'] ) {
         logrotate::rule { 'btmp':
             path        => '/var/log/btmp',
             create_mode => '0600',
@@ -147,7 +149,7 @@ class logrotate::defaults{
         size         => '400k',
       }
 
-      if !defined( Logrotate::Rule['wtmp'] ) {
+      if $defaultrule_bwtmp and !defined( Logrotate::Rule['wtmp'] ) {
         logrotate::rule { 'wtmp':
             path        => '/var/log/wtmp',
             create_mode => '0664',
@@ -155,7 +157,7 @@ class logrotate::defaults{
         }
       }
 
-      if !defined( Logrotate::Rule['btmp'] ) {
+      if $defaultrule_bwtmp and !defined( Logrotate::Rule['btmp'] ) {
         logrotate::rule { 'btmp':
             path         => '/var/log/btmp',
             create_mode  => '0600',

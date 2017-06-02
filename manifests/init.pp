@@ -3,6 +3,7 @@ class logrotate (
   $ensure             = present,
   $hieramerge         = false,
   $manage_cron_daily  = true,
+  $defaultrule_bwtmp  = true,
   $package            = 'logrotate',
   $rules              = {},
   $config             = undef,
